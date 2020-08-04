@@ -10,23 +10,23 @@ const config = {
   host: '0.0.0.0'
 };
 
-const tempF = new prom.Gauge({
-  name: 'tempF',
+const watchdog_tempF = new prom.Gauge({
+  name: 'watchdog_tempF',
   help: 'Temperature'
 });
 
-const humidity = new prom.Gauge({
-  name: 'humidity',
+const watchdog_humidity = new prom.Gauge({
+  name: 'watchdog_humidity',
   help: 'Relative Humidity'
 });
 
-const airflow = new prom.Gauge({
-  name: 'airflow',
+const watchdog_airflow = new prom.Gauge({
+  name: 'watchdog_airflow',
   help: 'Airflow'
 });
 
-const sound = new prom.Gauge({
-  name: 'sound',
+const watchdog_sound = new prom.Gauge({
+  name: 'watchdog_sound',
   help: 'Sound'
 });
 
@@ -45,10 +45,10 @@ async function getMetrics() {
 
   prom.register.resetMetrics();
 
-  tempF.set(Number(json.server.devices[0].device[0].field[1].$.value));
-  humidity.set(Number(json.server.devices[0].device[0].field[2].$.value));
-  airflow.set(Number(json.server.devices[0].device[0].field[3].$.value));
-  sound.set(Number(json.server.devices[0].device[0].field[5].$.value));
+  watchdog_tempF.set(Number(json.server.devices[0].device[0].field[1].$.value));
+  watchdog_humidity.set(Number(json.server.devices[0].device[0].field[2].$.value));
+  watchdog_airflow.set(Number(json.server.devices[0].device[0].field[3].$.value));
+  watchdog_sound.set(Number(json.server.devices[0].device[0].field[5].$.value));
 
   return prom.register.metrics();
 }
