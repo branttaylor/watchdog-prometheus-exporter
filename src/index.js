@@ -3,13 +3,6 @@ const prom = require('prom-client');
 const got = require('got');
 const express = require('express');
 
-const config = {
-  healthPath: '/healthz',
-  metricsPath: '/metrics',
-  port: 8000,
-  host: '0.0.0.0'
-};
-
 const watchdog_tempF = new prom.Gauge({
   name: 'watchdog_tempF',
   help: 'Temperature'
@@ -32,7 +25,7 @@ const watchdog_sound = new prom.Gauge({
 
 async function getAll() {
   // Fetch XML from device
-  const response = await got('http://192.168.1.40/data.xml');
+  const response = await got(process.env.WATCHDOG_PATH);
 
   // Convert XML to JSON
   const json = await xml.parseStringPromise(response.body);
@@ -56,9 +49,9 @@ async function getMetrics() {
 function main() {
   const app = express();
 
-  app.get(config.healthPath, (req, res) => res.send({status: 'up'}));
+  app.get(process.env.HEALTH_PATH, (req, res) => res.send({status: 'up'}));
 
-  app.get(config.metricsPath, async (req, res) => {
+  app.get(process.env.METRICS_PATH, async (req, res) => {
     let metrics;
     try {
       metrics = await getMetrics();
@@ -69,7 +62,7 @@ function main() {
     res.send(metrics);
   });
 
-  app.listen(config.port, config.host, () => console.log('Server is running!!!'));
+  app.listen(process.env.PORT, process.env.HOST, () => console.log('Server is running!!!'));
 }
 
 try {
