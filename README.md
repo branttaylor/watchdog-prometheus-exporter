@@ -2,7 +2,7 @@
 
 A Prometheus exporter for the I.T. Watchdogs WxGoos-1 Climate Monitor
 
-### Environment Variable
+### Environment Variables
 
 You are required to set 5 environment variables for the app:
 
