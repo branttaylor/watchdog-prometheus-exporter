@@ -139,13 +139,15 @@
         "hiddenSeries": false,
         "id": 3,
         "legend": {
+          "alignAsTable": true,
           "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": false,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
           "total": false,
-          "values": false
+          "values": true
         },
         "lines": true,
         "linewidth": 1,
@@ -426,5 +428,5 @@
     "timezone": "",
     "title": "Server Closet Environment",
     "uid": "u9zbbRSMz",
-    "version": 8
-  }
+    "version": 10
+}
