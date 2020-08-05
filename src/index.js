@@ -18,6 +18,11 @@ const watchdog_airflow = new prom.Gauge({
   help: 'Airflow'
 });
 
+const watchdog_light = new prom.Gauge({
+  name: 'watchdog_light',
+  help: 'Light'
+});
+
 const watchdog_sound = new prom.Gauge({
   name: 'watchdog_sound',
   help: 'Sound'
@@ -41,6 +46,7 @@ async function getMetrics() {
   watchdog_tempF.set(Number(json.server.devices[0].device[0].field[1].$.value));
   watchdog_humidity.set(Number(json.server.devices[0].device[0].field[2].$.value));
   watchdog_airflow.set(Number(json.server.devices[0].device[0].field[3].$.value));
+  watchdog_light.set(Number(json.server.devices[0].device[0].field[4].$.value));
   watchdog_sound.set(Number(json.server.devices[0].device[0].field[5].$.value));
 
   return prom.register.metrics();
