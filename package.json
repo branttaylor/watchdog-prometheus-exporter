@@ -14,5 +14,9 @@
     "got": "^11.5.1",
     "prom-client": "^12.0.0",
     "xml2js": "^0.4.23"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:branttaylor/watchdog-prometheus-exporter.git"
   }
 }
