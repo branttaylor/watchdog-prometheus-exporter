@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: watchdog-prometheus-exporter-service
+  namespace: monitoring
+  labels:
+    app: watchdog-prometheus-exporter
+spec:
+  selector:
+    app: watchdog-prometheus-exporter
+  ports:
+    - name: prometheus-client
+      port: 8000

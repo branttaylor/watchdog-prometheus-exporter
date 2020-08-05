@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: watchdog-prometheus-exporter
+    release: prometheus-operator
+  name: watchdog-prometheus-exporter
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+    port: prometheus-client
+    scrapeTimeout: 25s
+  jobLabel: name
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app : watchdog-prometheus-exporter
