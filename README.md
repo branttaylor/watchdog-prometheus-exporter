@@ -2,6 +2,16 @@
 
 A Prometheus exporter for the I.T. Watchdogs WxGoos-1 Climate Monitor
 
+### Metrics
+
+This exporter provides the following metrics:
+
+- Temperature (F)
+- Humidity
+- Airflow
+- Light
+- Sound
+
 ### Environment Variables
 
 You are required to set 5 environment variables for the app:
