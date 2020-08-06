@@ -22,7 +22,9 @@ This exporter provides the following metrics:
 | HEALTH_PATH   | /healthz     |           |
 | WATCHDOG_PATH | {no default} | X         |
 
-The `WATCHDOG_PATH` variable should include the full path to the device's `data.xml` (Ex. `http://10.0.0.100/data.xml`).
+The `WATCHDOG_PATH` variable should include the full path to the device's `data.xml`.
+
+- Example: `http://10.0.0.100/data.xml`
 
 ### Examples
 
