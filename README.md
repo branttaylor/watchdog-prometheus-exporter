@@ -14,15 +14,15 @@ This exporter provides the following metrics:
 
 ### Environment Variables
 
-You are required to set 5 environment variables for the app:
+| Variable      | Default      | Required? |
+|---------------|--------------|-----------|
+| PORT          | 8000         |           |
+| HOST          | 0.0.0.0      |           |
+| METRICS_PATH  | /metrics     |           |
+| HEALTH_PATH   | /healthz     |           |
+| WATCHDOG_PATH | {no default} | X         |
 
-| Variable      | Example                       |
-|---------------|-------------------------------|
-| PORT          | 8000                          |
-| HOST          | 0.0.0.0                       |
-| METRICS_PATH  | /metrics                      |
-| HEALTH_PATH   | /healthz                      |
-| WATCHDOG_PATH | http://192.168.10.10/data.xml |
+The `WATCHDOG_PATH` variable should include the full path to the device's `data.xml` (Ex. `http://10.0.0.100/data.xml`).
 
 ### Examples
 
