@@ -39,13 +39,15 @@ spec:
             successThreshold: 1
             timeoutSeconds: 3
           env:
-            - name: PORT
-              value: '8000'
-            - name: HOST
-              value: '0.0.0.0'
-            - name: METRICS_PATH
-              value: '/metrics'
-            - name: HEALTH_PATH
-              value: '/healthz'
             - name: WATCHDOG_PATH
-              value: 'http://192.168.10.10/data.xml'
+              value: 'http://10.0.0.100/data.xml'
+            # Not needed if you are using the defaults:
+            #
+            # - name: PORT
+            #   value: '8000'
+            # - name: HOST
+            #   value: '0.0.0.0'
+            # - name: METRICS_PATH
+            #   value: '/metrics'
+            # - name: HEALTH_PATH
+            #   value: '/healthz'
