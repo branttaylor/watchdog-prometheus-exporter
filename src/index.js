@@ -55,9 +55,9 @@ async function getMetrics() {
 function main() {
   const app = express();
 
-  app.get(process.env.HEALTH_PATH, (req, res) => res.send({status: 'up'}));
+  app.get(process.env.HEALTH_PATH || '/healthz', (req, res) => res.send({status: 'up'}));
 
-  app.get(process.env.METRICS_PATH, async (req, res) => {
+  app.get(process.env.METRICS_PATH || '/metrics', async (req, res) => {
     let metrics;
     try {
       metrics = await getMetrics();
@@ -68,10 +68,14 @@ function main() {
     res.send(metrics);
   });
 
-  app.listen(process.env.PORT, process.env.HOST, () => console.log('Server is running!!!'));
+  app.listen(process.env.PORT || 8000, process.env.HOST || '0.0.0.0', () => console.log('Server is running!!!'));
 }
 
 try {
+  if (typeof process.env.WATCHDOG_PATH == 'undefined'){
+    console.log('Required environment variable WATCHDOG_PATH is undefined!!!');
+    process.exit(1);
+  }
   main();
 } catch (e) {
   console.error('Error during startup!!!');
