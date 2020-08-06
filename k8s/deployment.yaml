@@ -41,8 +41,6 @@ spec:
           env:
             - name: WATCHDOG_PATH
               value: 'http://10.0.0.100/data.xml'
-            # Not needed if you are using the defaults:
-            #
             # - name: PORT
             #   value: '8000'
             # - name: HOST
@@ -51,3 +49,4 @@ spec:
             #   value: '/metrics'
             # - name: HEALTH_PATH
             #   value: '/healthz'
+            # Above commented variables are unneeded if you are using the defaults
