@@ -5,27 +5,42 @@ const express = require('express');
 
 const watchdog_tempF = new prom.Gauge({
   name: 'watchdog_tempF',
-  help: 'Temperature'
+  help: 'Temperature',
+  labelNames: [
+    'deviceName'
+  ]
 });
 
 const watchdog_humidity = new prom.Gauge({
   name: 'watchdog_humidity',
-  help: 'Relative Humidity'
+  help: 'Relative Humidity',
+  labelNames: [
+    'deviceName'
+  ]
 });
 
 const watchdog_airflow = new prom.Gauge({
   name: 'watchdog_airflow',
-  help: 'Airflow'
+  help: 'Airflow',
+  labelNames: [
+    'deviceName'
+  ]
 });
 
 const watchdog_light = new prom.Gauge({
   name: 'watchdog_light',
-  help: 'Light'
+  help: 'Light',
+  labelNames: [
+    'deviceName'
+  ]
 });
 
 const watchdog_sound = new prom.Gauge({
   name: 'watchdog_sound',
-  help: 'Sound'
+  help: 'Sound',
+  labelNames: [
+    'deviceName'
+  ]
 });
 
 async function getAll() {
@@ -43,11 +58,30 @@ async function getMetrics() {
 
   prom.register.resetMetrics();
 
-  watchdog_tempF.set(Number(json.server.devices[0].device[0].field[1].$.value));
-  watchdog_humidity.set(Number(json.server.devices[0].device[0].field[2].$.value));
-  watchdog_airflow.set(Number(json.server.devices[0].device[0].field[3].$.value));
-  watchdog_light.set(Number(json.server.devices[0].device[0].field[4].$.value));
-  watchdog_sound.set(Number(json.server.devices[0].device[0].field[5].$.value));
+  watchdog_tempF.set({
+      deviceName: json.server.$.host
+    }, Number(json.server.devices[0].device[0].field[1].$.value)
+  );
+
+  watchdog_humidity.set({
+      deviceName: json.server.$.host
+    }, Number(json.server.devices[0].device[0].field[2].$.value)
+  );
+
+  watchdog_airflow.set({
+      deviceName: json.server.$.host
+    }, Number(json.server.devices[0].device[0].field[3].$.value)
+  );
+
+  watchdog_light.set({
+      deviceName: json.server.$.host
+    }, Number(json.server.devices[0].device[0].field[4].$.value)
+  );
+
+  watchdog_sound.set({
+      deviceName: json.server.$.host
+    }, Number(json.server.devices[0].device[0].field[5].$.value)
+  );
 
   return prom.register.metrics();
 }
