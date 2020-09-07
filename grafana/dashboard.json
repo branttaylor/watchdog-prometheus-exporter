@@ -16,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 65,
+  "iteration": 1599491182456,
   "links": [],
   "panels": [
     {
@@ -24,7 +25,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "decimals": null,
+      "decimals": 2,
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -34,7 +35,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 14,
         "w": 12,
         "x": 0,
         "y": 0
@@ -45,6 +46,8 @@
         "alignAsTable": true,
         "avg": false,
         "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": true,
         "min": true,
         "rightSide": false,
@@ -68,10 +71,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(watchdog_tempF)",
+          "expr": "watchdog_tempF{job=~\"$watchdog\"}",
           "instant": false,
           "interval": "",
-          "legendFormat": "Temperature",
+          "legendFormat": "{{ deviceName }}",
           "refId": "A"
         }
       ],
@@ -79,7 +82,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Server Closet Temperature",
+      "title": "Temperature",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -122,6 +125,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "decimals": 0,
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -131,7 +135,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 14,
         "w": 12,
         "x": 12,
         "y": 0
@@ -165,9 +169,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(watchdog_humidity)",
+          "expr": "watchdog_humidity{job=~\"$watchdog\"}",
           "interval": "",
-          "legendFormat": "Humidity",
+          "legendFormat": "{{ deviceName }}",
           "refId": "A"
         }
       ],
@@ -175,7 +179,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Server Closet Humidity",
+      "title": "Humidity",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -227,115 +231,22 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 14,
         "w": 12,
         "x": 0,
-        "y": 10
-      },
-      "hiddenSeries": false,
-      "id": 5,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg(watchdog_sound)",
-          "interval": "",
-          "legendFormat": "Sound",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Server Closet Sound",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "dB",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 10
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 4,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -353,9 +264,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(watchdog_airflow)",
+          "expr": "watchdog_airflow{job=~\"$watchdog\"}",
           "interval": "",
-          "legendFormat": "Airflow",
+          "legendFormat": "{{ deviceName }}",
           "refId": "A"
         }
       ],
@@ -363,7 +274,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Server Closet Airflow",
+      "title": "Airflow",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -415,21 +326,22 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 14,
         "w": 12,
-        "x": 0,
-        "y": 19
+        "x": 12,
+        "y": 14
       },
       "hiddenSeries": false,
-      "id": 6,
+      "id": 5,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -447,9 +359,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(watchdog_light)",
+          "expr": "watchdog_sound{job=~\"$watchdog\"}",
           "interval": "",
-          "legendFormat": "Sound",
+          "legendFormat": "{{ deviceName }}",
           "refId": "A"
         }
       ],
@@ -457,7 +369,103 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Server Closet Light",
+      "title": "Sound",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "dB",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "watchdog_light{job=~\"$watchdog\"}",
+          "interval": "",
+          "legendFormat": "{{ deviceName }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Light",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -500,7 +508,50 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(watchdog_tempF, service)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Watchdog Device",
+        "multi": false,
+        "name": "watchdog",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "watchdog-prometheus-exporter-service",
+            "value": "watchdog-prometheus-exporter-service"
+          },
+          {
+            "selected": false,
+            "text": "watchdog-prometheus-exporter-2-service",
+            "value": "watchdog-prometheus-exporter-2-service"
+          }
+        ],
+        "query": "label_values(watchdog_tempF, service)",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-24h",
@@ -520,7 +571,7 @@
     ]
   },
   "timezone": "",
-  "title": "Server Closet Environment",
+  "title": "Environment Monitors",
   "uid": "u9zbbRSMz",
-  "version": 12
+  "version": 18
 }
