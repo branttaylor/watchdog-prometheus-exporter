@@ -68,15 +68,27 @@ async function getMetrics() {
     }, Number(json.server.devices[0].device[0].field[2].$.value)
   );
 
-  watchdog_airflow.set({
-      deviceName: json.server.$.host
-    }, Number(json.server.devices[0].device[0].field[3].$.value)
-  );
+  if (typeof process.env.WATCHDOG_VER == 1){
+    watchdog_airflow.set({
+        deviceName: json.server.$.host
+      }, Number(json.server.devices[0].device[0].field[3].$.value)
+    );
 
-  watchdog_light.set({
-      deviceName: json.server.$.host
-    }, Number(json.server.devices[0].device[0].field[4].$.value)
-  );
+    watchdog_light.set({
+        deviceName: json.server.$.host
+      }, Number(json.server.devices[0].device[0].field[4].$.value)
+    );
+  } else {
+    watchdog_airflow.set({
+        deviceName: json.server.$.host
+      }, Number(json.server.devices[0].device[0].field[4].$.value)
+    );
+
+    watchdog_light.set({
+        deviceName: json.server.$.host
+      }, Number(json.server.devices[0].device[0].field[3].$.value)
+    );
+  };
 
   watchdog_sound.set({
       deviceName: json.server.$.host

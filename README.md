@@ -21,8 +21,11 @@ This exporter provides the following metrics:
 | METRICS_PATH  | /metrics     |           |
 | HEALTH_PATH   | /healthz     |           |
 | WATCHDOG_PATH | {no default} | X         |
+| WATCHDOG_VER  | {no default} |           |
 
 The `WATCHDOG_PATH` variable should include the full path to the device's `data.xml`.
+
+The `WATCHDOG_VER` variable should be set to `1` if you are using a version 1 Weathergoose device.
 
 - Example: `http://10.0.0.100/data.xml`
 
