@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: watchdog-prometheus-exporter
-          image: branttaylor/watchdog-prometheus-exporter:10
+          image: branttaylor/watchdog-prometheus-exporter:11
           livenessProbe:
             failureThreshold: 3
             httpGet:
