@@ -49,4 +49,6 @@ spec:
             #   value: '/metrics'
             # - name: HEALTH_PATH
             #   value: '/healthz'
+            # - name: WATCHDOG_VER
+            #   value: '1'
             # Above commented variables are unneeded if you are using the defaults
