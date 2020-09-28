@@ -34,4 +34,4 @@ Example Kubernetes manifests and a Grafana dashboard are provided in this repo.
 
 ### Contributors
 
-Special thanks to @asmith60 for help to get this working.
+Special thanks to [@asmith60](https://github.com/asmith60) for help to get this working.
