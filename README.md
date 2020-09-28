@@ -31,3 +31,7 @@ The `WATCHDOG_PATH` variable should include the full path to the device's `data.
 ### Examples
 
 Example Kubernetes manifests and a Grafana dashboard are provided in this repo.
+
+### Contributors
+
+Special thanks to @asmith60 for help to get this working.
