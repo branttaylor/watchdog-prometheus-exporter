@@ -3,41 +3,73 @@ const prom = require('prom-client');
 const got = require('got');
 const express = require('express');
 
-const watchdog_tempF = new prom.Gauge({
-  name: 'watchdog_tempF',
-  help: 'Temperature',
+const watchdog_TempC = new prom.Gauge({
+  name: 'watchdog_TempC',
+  help: 'Temperature (C)',
   labelNames: [
     'deviceName'
   ]
 });
 
-const watchdog_humidity = new prom.Gauge({
-  name: 'watchdog_humidity',
+const watchdog_TempF = new prom.Gauge({
+  name: 'watchdog_TempF',
+  help: 'Temperature (F)',
+  labelNames: [
+    'deviceName'
+  ]
+});
+
+const watchdog_Humidity = new prom.Gauge({
+  name: 'watchdog_Humidity',
   help: 'Relative Humidity',
   labelNames: [
     'deviceName'
   ]
 });
 
-const watchdog_airflow = new prom.Gauge({
-  name: 'watchdog_airflow',
-  help: 'Airflow',
+const watchdog_Airflow = new prom.Gauge({
+  name: 'watchdog_Airflow',
+  help: 'Air Flow',
   labelNames: [
     'deviceName'
   ]
 });
 
-const watchdog_light = new prom.Gauge({
-  name: 'watchdog_light',
-  help: 'Light',
+const watchdog_Light = new prom.Gauge({
+  name: 'watchdog_Light',
+  help: 'Light Level',
   labelNames: [
     'deviceName'
   ]
 });
 
-const watchdog_sound = new prom.Gauge({
-  name: 'watchdog_sound',
+const watchdog_Sound = new prom.Gauge({
+  name: 'watchdog_Sound',
   help: 'Sound',
+  labelNames: [
+    'deviceName'
+  ]
+});
+
+const watchdog_IO1 = new prom.Gauge({
+  name: 'watchdog_IO1',
+  help: 'Analog-1',
+  labelNames: [
+    'deviceName'
+  ]
+});
+
+const watchdog_IO2 = new prom.Gauge({
+  name: 'watchdog_IO2',
+  help: 'Analog-2',
+  labelNames: [
+    'deviceName'
+  ]
+});
+
+const watchdog_IO3 = new prom.Gauge({
+  name: 'watchdog_IO3',
+  help: 'Analog-3',
   labelNames: [
     'deviceName'
   ]
@@ -50,53 +82,25 @@ async function getAll() {
   // Convert XML to JSON
   const json = await xml.parseStringPromise(response.body);
 
-  return json
-}
+  return json;
+};
 
 async function getMetrics() {
   const json = await getAll();
 
-  prom.register.resetMetrics();
-
-  watchdog_tempF.set({
-      deviceName: json.server.$.host
-    }, Number(json.server.devices[0].device[0].field[1].$.value)
-  );
-
-  watchdog_humidity.set({
-      deviceName: json.server.$.host
-    }, Number(json.server.devices[0].device[0].field[2].$.value)
-  );
-
-  if (process.env.WATCHDOG_VER == 1){
-    watchdog_airflow.set({
-        deviceName: json.server.$.host
-      }, Number(json.server.devices[0].device[0].field[3].$.value)
-    );
-
-    watchdog_light.set({
-        deviceName: json.server.$.host
-      }, Number(json.server.devices[0].device[0].field[4].$.value)
-    );
-  } else {
-    watchdog_airflow.set({
-        deviceName: json.server.$.host
-      }, Number(json.server.devices[0].device[0].field[4].$.value)
-    );
-
-    watchdog_light.set({
-        deviceName: json.server.$.host
-      }, Number(json.server.devices[0].device[0].field[3].$.value)
-    );
+  for (const device of json.server.devices[0].device) {
+    const deviceName = device.$.name;
+    for (const field of device.field) {
+      const metricName = 'watchdog_' + field.$.key;
+      eval(metricName).set({
+          deviceName: deviceName
+        }, Number(field.$.value)
+      );
+    };
   };
 
-  watchdog_sound.set({
-      deviceName: json.server.$.host
-    }, Number(json.server.devices[0].device[0].field[5].$.value)
-  );
-
   return prom.register.metrics();
-}
+};
 
 function main() {
   const app = express();
