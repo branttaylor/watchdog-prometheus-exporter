@@ -71,7 +71,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "watchdog_tempF{job=~\"$watchdog\"}",
+          "expr": "watchdog_TempF{job=~\"$watchdog\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ deviceName }}",
@@ -169,7 +169,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "watchdog_humidity{job=~\"$watchdog\"}",
+          "expr": "watchdog_Humidity{job=~\"$watchdog\"}",
           "interval": "",
           "legendFormat": "{{ deviceName }}",
           "refId": "A"
@@ -264,7 +264,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "watchdog_airflow{job=~\"$watchdog\"}",
+          "expr": "watchdog_Airflow{job=~\"$watchdog\"}",
           "interval": "",
           "legendFormat": "{{ deviceName }}",
           "refId": "A"
@@ -359,7 +359,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "watchdog_sound{job=~\"$watchdog\"}",
+          "expr": "watchdog_Sound{job=~\"$watchdog\"}",
           "interval": "",
           "legendFormat": "{{ deviceName }}",
           "refId": "A"
@@ -455,7 +455,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "watchdog_light{job=~\"$watchdog\"}",
+          "expr": "watchdog_Light{job=~\"$watchdog\"}",
           "interval": "",
           "legendFormat": "{{ deviceName }}",
           "refId": "A"
@@ -517,7 +517,7 @@
           "value": "$__all"
         },
         "datasource": "Prometheus",
-        "definition": "label_values(watchdog_tempF, service)",
+        "definition": "label_values(watchdog_TempF, service)",
         "hide": 0,
         "includeAll": true,
         "label": "Watchdog Device",
@@ -540,7 +540,7 @@
             "value": "watchdog-prometheus-exporter-2-service"
           }
         ],
-        "query": "label_values(watchdog_tempF, service)",
+        "query": "label_values(watchdog_TempF, service)",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,

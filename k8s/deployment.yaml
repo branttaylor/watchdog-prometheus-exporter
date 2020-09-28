@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: watchdog-prometheus-exporter
-          image: branttaylor/watchdog-prometheus-exporter:11
+          image: branttaylor/watchdog-prometheus-exporter:13
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -49,6 +49,4 @@ spec:
             #   value: '/metrics'
             # - name: HEALTH_PATH
             #   value: '/healthz'
-            # - name: WATCHDOG_VER
-            #   value: '1'
             # Above commented variables are unneeded if you are using the defaults
