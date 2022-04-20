@@ -9,7 +9,7 @@
   "author": "Brant Taylor",
   "license": "ISC",
   "dependencies": {
-    "convict": "^6.0.0",
+    "convict": "^6.2.2",
     "express": "^4.17.1",
     "got": "^11.5.1",
     "prom-client": "^12.0.0",
